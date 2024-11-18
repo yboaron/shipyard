@@ -4,7 +4,7 @@ FROM fedora:41
 # good balance between compression time and resulting image size.
 ARG UPX_LEVEL=-5
 ENV DAPPER_HOST_ARCH=amd64 SHIPYARD_DIR=/opt/shipyard SHELL=/bin/bash \
-    DAPPER_RUN_ARGS="--net=kind"
+    DAPPER_RUN_ARGS="--net=kind --cap-add=NET_ADMIN --privileged=true"
 ENV HOST_ARCH=${DAPPER_HOST_ARCH} ARCH=${DAPPER_HOST_ARCH} PATH=/go/bin:/root/.local/bin:/usr/local/go/bin:$PATH \
     GOLANG_ARCH_amd64=amd64 GOLANG_ARCH_arm=armv6l GOLANG_ARCH=GOLANG_ARCH_${DAPPER_HOST_ARCH} \
     GOPATH=/go GO111MODULE=on GOPROXY=https://proxy.golang.org \
