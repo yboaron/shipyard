@@ -264,6 +264,10 @@ function prepare_ovn() {
 
     # When updating commit, Update the OVN_SRC_IMAGE to the corressponding commit
     git checkout 24b0ae73a996e409bfefad7b90cb42224e34be54
+    git fetch origin pull/4955/head:kind_ipv6_fix
+    git config user.email "fufu@example.com"
+    git config user.name "fufu"
+    git cherry-pick kind_ipv6_fix
     local OVN_SRC_IMAGE="ghcr.io/ovn-org/ovn-kubernetes/ovn-kube-u:master@sha256:ba102783d520f0474e5c7dd5f2a0a1dce0ec2bda6cd42ac547621892e57c25e2"
 
     docker pull "${OVN_SRC_IMAGE}"
